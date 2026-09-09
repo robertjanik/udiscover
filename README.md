@@ -33,6 +33,18 @@ The discovery document would be a simple JSON file named udiscovery.json. It cou
 
 (The latter follows the widely used “/.well‑known/” convention - see https://en.wikipedia.org/wiki/Well-known_URI)
 
+## Structure
+
+JSON has the following elements:
+* open_services - well established and widely accepted standards
+* proprietary_services - custom services provided by companies and individuals.
+* global_discovery - well-known endpoints and DNS records
+
+### Rules
+1. Proprietary services must be uniquely identified by their domain name in order to avoid naming collisions. Although this cannot be strictly enforced—any provider could technically host anything on its server—it is in each provider’s best interest to comply with the requirement.
+
+When a udiscovery.json file that lists proprietary services is placed on a third‑party–managed server, the administrator must resolve any potential naming conflicts (for example, by verifying domain ownership) and reject configurations that violate this rule, because each service must to be uniquely identifiable.
+
 ## Call for Collaboration
 In this GitHub project I have added an initial udiscovery.json, generated with the help of AI. However, maintaining a comprehensive catalog of existing services and defining a robust standard requires more resources than I can provide alone.
 
