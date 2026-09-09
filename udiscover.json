@@ -1,0 +1,640 @@
+{
+  "version": "0.1",
+  "generated_by": "Universal Service Discovery Proposal",
+  "description": "Unified discovery and capability manifest for internet services, communication protocols, identity systems, cloud ecosystems, social platforms, and AI services.",
+
+  "open_services": {
+
+    "authentication": {
+      "oauth2": {
+        "spec": "RFC 6749",
+        "discovery": "/.well-known/oauth-authorization-server",
+        "capabilities": [
+          "authorization_code",
+          "pkce",
+          "device_code",
+          "refresh_tokens"
+        ]
+      },
+
+      "openid_connect": {
+        "spec": "OpenID Connect Discovery 1.0",
+        "discovery": "/.well-known/openid-configuration",
+        "capabilities": [
+          "identity",
+          "userinfo",
+          "jwt_tokens",
+          "single_sign_on"
+        ]
+      },
+
+      "webauthn": {
+        "spec": "W3C WebAuthn",
+        "capabilities": [
+          "hardware_keys",
+          "biometrics",
+          "passwordless_login"
+        ]
+      },
+
+      "saml2": {
+        "spec": "SAML 2.0",
+        "capabilities": [
+          "enterprise_sso",
+          "federated_identity"
+        ]
+      }
+    },
+
+    "email": {
+      "imap": {
+        "spec": "RFC 9051",
+        "default_ports": [143, 993],
+        "security": ["STARTTLS", "TLS"]
+      },
+
+      "smtp": {
+        "spec": "RFC 5321",
+        "default_ports": [25, 465, 587],
+        "security": ["STARTTLS", "TLS"]
+      },
+
+      "pop3": {
+        "spec": "RFC 1939",
+        "default_ports": [110, 995],
+        "security": ["STARTTLS", "TLS"]
+      },
+
+      "jmap_mail": {
+        "spec": "RFC 8621",
+        "capabilities": [
+          "modern_json_api",
+          "push_sync",
+          "efficient_sync"
+        ]
+      }
+    },
+
+    "calendar_and_tasks": {
+      "caldav": {
+        "spec": "RFC 4791",
+        "discovery": "/.well-known/caldav",
+        "capabilities": [
+          "calendar_sync",
+          "event_invitations",
+          "recurrence",
+          "shared_calendars"
+        ]
+      },
+
+      "icalendar": {
+        "spec": "RFC 5545",
+        "formats": [".ics"]
+      },
+
+      "vtodo": {
+        "spec": "RFC 5545",
+        "capabilities": [
+          "tasks",
+          "reminders",
+          "todo_sync"
+        ]
+      }
+    },
+
+    "contacts": {
+      "carddav": {
+        "spec": "RFC 6352",
+        "discovery": "/.well-known/carddav",
+        "capabilities": [
+          "contact_sync",
+          "groups",
+          "vcard_support"
+        ]
+      },
+
+      "vcard": {
+        "spec": "RFC 6350"
+      }
+    },
+
+    "messaging_and_social": {
+      "activitypub": {
+        "spec": "W3C ActivityPub",
+        "capabilities": [
+          "federated_social_network",
+          "followers",
+          "posts",
+          "federation"
+        ]
+      },
+
+      "matrix": {
+        "spec": "Matrix Protocol",
+        "capabilities": [
+          "federated_chat",
+          "e2ee",
+          "voice_calls",
+          "rooms"
+        ]
+      },
+
+      "xmpp": {
+        "spec": "RFC 6120",
+        "capabilities": [
+          "chat",
+          "presence",
+          "group_chat"
+        ]
+      },
+
+      "rss": {
+        "spec": "RSS 2.0",
+        "capabilities": [
+          "feed_distribution",
+          "content_updates"
+        ]
+      },
+
+      "atom": {
+        "spec": "RFC 4287",
+        "capabilities": [
+          "feed_distribution"
+        ]
+      }
+    },
+
+    "files_and_storage": {
+      "webdav": {
+        "spec": "RFC 4918",
+        "capabilities": [
+          "file_storage",
+          "remote_editing",
+          "directory_sync"
+        ]
+      },
+
+      "s3_compatible": {
+        "spec": "Amazon S3 Compatible API",
+        "capabilities": [
+          "object_storage",
+          "multipart_upload",
+          "signed_urls"
+        ]
+      }
+    },
+
+    "realtime_and_notifications": {
+      "websocket": {
+        "spec": "RFC 6455",
+        "capabilities": [
+          "realtime_updates",
+          "bidirectional_communication"
+        ]
+      },
+
+      "server_sent_events": {
+        "spec": "HTML Living Standard",
+        "capabilities": [
+          "push_notifications",
+          "stream_updates"
+        ]
+      },
+
+      "webpush": {
+        "spec": "W3C Push API",
+        "capabilities": [
+          "browser_notifications",
+          "background_push"
+        ]
+      }
+    },
+
+    "ai_services": {
+
+      "llm_text_generation": {
+        "spec": "Open LLM Generation API v1",
+
+        "capabilities": {
+          "chat_completion": true,
+          "reasoning": true,
+          "tool_calling": true,
+          "streaming": true,
+          "structured_output": true,
+          "multilingual": true,
+          "vision_input": true,
+          "audio_input": false
+        },
+
+        "limits": {
+          "max_context_tokens": 1048576,
+          "max_output_tokens": 32768
+        },
+
+        "input_formats": [
+          "text/plain",
+          "application/json",
+          "image/png",
+          "image/jpeg"
+        ],
+
+        "output_formats": [
+          "text/plain",
+          "application/json",
+          "application/markdown"
+        ],
+
+        "authentication": [
+          "oauth2",
+          "api_key"
+        ],
+
+        "discovery": "/.well-known/ai/llm"
+      },
+
+      "image_generation": {
+        "spec": "Open Image Generation API v1",
+
+        "capabilities": {
+          "text_to_image": true,
+          "image_to_image": true,
+          "inpainting": true,
+          "outpainting": true,
+          "style_transfer": true,
+          "controlnet": true,
+          "depth_guidance": true,
+          "segmentation_guidance": false,
+          "realtime_generation": false,
+          "video_generation": false,
+          "transparent_background": true,
+          "face_restoration": true,
+          "upscaling": true,
+          "seed_control": true,
+          "batch_generation": true
+        },
+
+        "generation_settings": {
+          "supported_resolutions": [
+            "512x512",
+            "768x768",
+            "1024x1024",
+            "2048x2048",
+            "4096x4096"
+          ],
+
+          "max_images_per_request": 16,
+
+          "supported_styles": [
+            "photorealistic",
+            "anime",
+            "cinematic",
+            "3d_render",
+            "watercolor",
+            "pixel_art",
+            "vector",
+            "sketch"
+          ],
+
+          "supported_samplers": [
+            "ddim",
+            "euler",
+            "dpm++",
+            "heun"
+          ],
+
+          "supported_output_formats": [
+            "png",
+            "jpeg",
+            "webp"
+          ]
+        },
+
+        "input_formats": [
+          "text/plain",
+          "image/png",
+          "image/jpeg",
+          "image/webp"
+        ],
+
+        "output_formats": [
+          "image/png",
+          "image/jpeg",
+          "image/webp"
+        ],
+
+        "authentication": [
+          "oauth2",
+          "api_key"
+        ],
+
+        "discovery": "/.well-known/ai/image-generation"
+      },
+
+      "image_classification": {
+        "spec": "Open Vision Classification API v1",
+
+        "capabilities": {
+          "object_detection": true,
+          "ocr": true,
+          "scene_understanding": true,
+          "face_detection": true,
+          "barcode_detection": true,
+          "document_understanding": true,
+          "medical_analysis": false
+        },
+
+        "input_formats": [
+          "image/png",
+          "image/jpeg",
+          "image/webp",
+          "application/pdf"
+        ],
+
+        "output_formats": [
+          "application/json"
+        ],
+
+        "authentication": [
+          "oauth2",
+          "api_key"
+        ],
+
+        "discovery": "/.well-known/ai/vision"
+      },
+
+      "speech_processing": {
+        "spec": "Open Speech API v1",
+
+        "capabilities": {
+          "speech_to_text": true,
+          "text_to_speech": true,
+          "speaker_identification": true,
+          "translation": true,
+          "emotion_detection": false,
+          "voice_cloning": false
+        },
+
+        "input_formats": [
+          "audio/wav",
+          "audio/mp3",
+          "audio/flac",
+          "audio/ogg"
+        ],
+
+        "output_formats": [
+          "text/plain",
+          "application/json",
+          "audio/wav"
+        ],
+
+        "authentication": [
+          "oauth2",
+          "api_key"
+        ],
+
+        "discovery": "/.well-known/ai/speech"
+      },
+
+      "embeddings": {
+        "spec": "Open Embedding API v1",
+
+        "capabilities": {
+          "semantic_search": true,
+          "vector_generation": true,
+          "clustering": true,
+          "retrieval": true
+        },
+
+        "supported_dimensions": [
+          384,
+          768,
+          1024,
+          1536,
+          3072
+        ],
+
+        "authentication": [
+          "oauth2",
+          "api_key"
+        ],
+
+        "discovery": "/.well-known/ai/embeddings"
+      },
+
+      "reranking": {
+        "spec": "Open Reranking API v1",
+
+        "capabilities": {
+          "document_ranking": true,
+          "search_relevance": true,
+          "semantic_sorting": true
+        },
+
+        "authentication": [
+          "oauth2",
+          "api_key"
+        ],
+
+        "discovery": "/.well-known/ai/rerank"
+      },
+
+      "moderation": {
+        "spec": "Open AI Moderation API v1",
+
+        "capabilities": {
+          "toxicity_detection": true,
+          "nsfw_detection": true,
+          "violence_detection": true,
+          "policy_classification": true,
+          "hate_speech_detection": true
+        },
+
+        "authentication": [
+          "oauth2",
+          "api_key"
+        ],
+
+        "discovery": "/.well-known/ai/moderation"
+      },
+
+      "agent_execution": {
+        "spec": "Open Agent Runtime API v1",
+
+        "capabilities": {
+          "tool_execution": true,
+          "multi_step_reasoning": true,
+          "workflow_execution": true,
+          "task_planning": true,
+          "memory": true,
+          "external_api_calls": true
+        },
+
+        "authentication": [
+          "oauth2",
+          "api_key"
+        ],
+
+        "discovery": "/.well-known/ai/agent"
+      }
+    }
+  },
+
+  "proprietary_services": {
+
+    "com.apple.icloud": {
+      "vendor": "Apple",
+      "homepage": "https://icloud.com",
+
+      "authentication": [
+        "oauth2",
+        "apple_id"
+      ],
+
+      "services": [
+        "mail",
+        "calendar",
+        "contacts",
+        "notes",
+        "reminders",
+        "drive",
+        "photos",
+        "find_my"
+      ],
+
+      "capabilities": {
+        "calendar": [
+          "caldav",
+          "push_sync"
+        ],
+
+        "contacts": [
+          "carddav"
+        ]
+      }
+    },
+
+    "com.microsoft.exchange": {
+      "vendor": "Microsoft",
+      "homepage": "https://outlook.office.com",
+
+      "authentication": [
+        "oauth2",
+        "microsoft_identity_platform"
+      ],
+
+      "services": [
+        "exchange_mail",
+        "exchange_calendar",
+        "exchange_contacts",
+        "tasks",
+        "teams"
+      ],
+
+      "capabilities": {
+        "autodiscover": true,
+        "push_sync": true,
+        "meeting_metadata": true,
+        "enterprise_policy": true
+      }
+    },
+
+    "com.google.workspace": {
+      "vendor": "Google",
+      "homepage": "https://workspace.google.com",
+
+      "authentication": [
+        "oauth2",
+        "google_identity"
+      ],
+
+      "services": [
+        "gmail",
+        "google_calendar",
+        "google_contacts",
+        "google_drive",
+        "google_meet",
+        "tasks",
+        "gemini_ai"
+      ],
+
+      "capabilities": {
+        "calendar_sync": true,
+        "contacts_sync": true,
+        "ai_assistance": true
+      }
+    },
+
+    "com.meta.facebook": {
+      "vendor": "Meta",
+      "homepage": "https://facebook.com",
+
+      "authentication": [
+        "oauth2",
+        "facebook_login"
+      ],
+
+      "services": [
+        "social_graph",
+        "messaging",
+        "pages",
+        "groups",
+        "marketplace"
+      ],
+
+      "capabilities": {
+        "graph_api": true,
+        "social_feed": true,
+        "realtime_notifications": true
+      }
+    },
+
+    "com.meta.instagram": {
+      "vendor": "Meta",
+      "homepage": "https://instagram.com",
+
+      "authentication": [
+        "oauth2",
+        "instagram_login"
+      ],
+
+      "services": [
+        "social_media",
+        "messaging",
+        "stories",
+        "reels"
+      ],
+
+      "capabilities": {
+        "media_api": true,
+        "creator_tools": true
+      }
+    }
+  },
+
+  "global_discovery": {
+
+    "well_known_endpoints": [
+      "/.well-known/openid-configuration",
+      "/.well-known/oauth-authorization-server",
+      "/.well-known/caldav",
+      "/.well-known/carddav",
+      "/.well-known/webfinger",
+      "/.well-known/matrix/server",
+      "/.well-known/ai/llm",
+      "/.well-known/ai/image-generation",
+      "/.well-known/ai/vision",
+      "/.well-known/ai/speech",
+      "/.well-known/ai/embeddings",
+      "/.well-known/ai/rerank",
+      "/.well-known/ai/moderation",
+      "/.well-known/ai/agent"
+    ],
+
+    "recommended_dns_records": [
+      "SRV",
+      "TXT",
+      "CAA",
+      "MX"
+    ]
+  }
+}
